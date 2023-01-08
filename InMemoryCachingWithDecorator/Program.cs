@@ -15,7 +15,12 @@ builder.Services.AddSwaggerGen();
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseInMemoryDatabase("VehicleDb"));
 
+//Vehicles
 builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.Decorate<IVehicleService, CachedVehicleService>();
+
+//In-Memory Caching
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
