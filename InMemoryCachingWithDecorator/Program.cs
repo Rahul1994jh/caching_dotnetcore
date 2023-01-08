@@ -1,4 +1,5 @@
 using InMemoryCachingWithDecorator.Data;
+using InMemoryCachingWithDecorator.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddSwaggerGen();
 
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseInMemoryDatabase("VehicleDb"));
+
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 var app = builder.Build();
 
